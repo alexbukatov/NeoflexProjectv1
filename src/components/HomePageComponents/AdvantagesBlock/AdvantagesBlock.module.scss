@@ -1,0 +1,49 @@
+@import '/src/scss/mixins/media';
+@import '/src/scss/variables/variables';
+@import '/src/scss/mixins/mixin';
+@import '/src/scss/variables/font-size';
+
+.advantages {
+  font-family: Rubik;
+  margin-top: 11.2rem;
+  @include flexbox(row, space-between, center, 7.5rem);
+  @include tablet {
+    @include flexbox(column, space-between, center, 4rem);
+    margin-top: 5rem;
+    &__image {
+      max-width: 30rem;
+    }
+  }
+
+  &__content {
+    @include flexbox(column, flex-start, stretch, 3.2rem);
+    @include tablet {
+      @include flexbox(column, flex-start, stretch, 2.5rem);
+    }
+  }
+  &__desc {
+    color: $gray;
+    font-size: $font-size-m;
+    font-weight: 400;
+    @include mobile {
+      font-size: calc($font-size-m - 0.2rem);
+    }
+  }
+  &__list {
+    @include flexbox(column, flex-start, stretch, 2rem);
+    @include mobile {
+      gap: 1rem;
+    }
+  }
+  &__item {
+    @include flexbox(row, flex-start, center, 1.8rem);
+  }
+  &__itemText {
+    color: $gray;
+    font-size: $font-size-s;
+    font-weight: 400;
+    @include mobile {
+      font-size: calc($font-size-s - 0.2rem);
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import '/src/scss/mixins/media';
+@import '/src/scss/variables/variables';
+@import '/src/scss/variables/font-size';
+@import '/src/scss/mixins/mixin';
+
+.currency {
+  font-size: calc($font-size-m + 0.4rem);
+  color: $black;
+  margin-top: 4.8rem;
+  border-radius: 2.8rem;
+  box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2), 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(0deg, rgba(178, 178, 178, 0.8) 8.055%, rgba(178, 178, 178, 0) 67.93%),
+    rgba(244, 244, 244, 0.9);
+  padding: 4.2rem 3.2rem 3.2rem 3.2rem;
+  display: grid;
+  grid-template: repeat(3, auto) / repeat(2, auto);
+  grid-template-areas:
+    'head data'
+    'rate rate'
+    'link link';
+  @include tablet {
+    grid-template-areas:
+      'head head'
+      'rate rate'
+      'link data';
+  }
+  @include bigMobile {
+    padding: 2.5rem 2rem 2rem 2rem;
+  }
+
+  &__update {
+    grid-area: data;
+    align-self: center;
+    justify-self: end;
+    font-size: $font-size-m;
+    font-weight: 500;
+    @include bigMobile {
+      font-size: calc($font-size-m - 0.2rem);
+    }
+  }
+
+  &__rate {
+    grid-area: rate;
+  }
+
+  &__rateHeader {
+    margin-top: 3.4rem;
+    font-weight: 500;
+    @include bigMobile {
+      margin-top: 2.5rem;
+    }
+  }
+
+  &__rateMiddle {
+    margin: 2.3rem 0 3.8rem 0;
+    @include flexbox(row, space-between, center, null);
+    @include bigMobile {
+      margin-top: 2.3rem;
+      @include flexbox(column, space-between, center, 2rem);
+    }
+  }
+
+  &__rateList {
+    @include grid(repeat(2, 1fr) / repeat(3, 1fr), 3.2rem);
+    @media (max-width: 700px) {
+      @include grid(repeat(3, 1fr) / repeat(2, 1fr), 4rem);
+    }
+  }
+
+  &__rateItem {
+    display: inline-flex;
+    gap: 2rem;
+    font-weight: 700;
+    &__name {
+      color: $gray;
+    }
+  }
+
+  &__rateLink {
+    grid-area: link;
+    color: $white;
+    font-weight: 700;
+    align-self: center;
+  }
+}

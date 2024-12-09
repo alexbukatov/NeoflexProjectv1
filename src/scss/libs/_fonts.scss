@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu Regular'), local('Ubuntu Regular'), local('Ubuntu Regular'),
+    url('../../assets//fonts/Ubuntu/Ubuntu-Regular.woff') format('woff'),
+    url('../../assets//fonts/Ubuntu/Ubuntu-Regular.woff2') format('woff2'),
+    url('../../assets//fonts/Ubuntu/Ubuntu-Regular.ttf') format('ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu Medium'), local('Ubuntu-Medium'), local('Ubuntu-Medium'),
+    url('../../assets//fonts/Ubuntu/Ubuntu-Medium.woff') format('woff'),
+    url('../../assets//fonts/Ubuntu/Ubuntu-Medium.woff2') format('woff2'),
+    url('../../assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format('ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu Bold'), local('Ubuntu-Bold'), local('Ubuntu-Bold'),
+    url('../../assets/fonts/Ubuntu/Ubuntu-Bold.woff') format('woff'),
+    url('../../assets/fonts/Ubuntu/Ubuntu-Bold.woff2') format('woff2'),
+    url('../../assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: local('Rubik Regular'), local('Rubik-Regular'),
+    url('../../assets/fonts/Rubik/Rubik-Regular.woff') format('woff'),
+    url('../../assets/fonts/Rubik/Rubik-Regular.woff2') format('woff2'),
+    url('../../assets/fonts/Rubik/Rubik-Regular.ttf') format('ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: local('Rubik Medium'), local('Rubik-Medium'),
+    url('../../assets/fonts/Rubik/Rubik-Medium.woff') format('woff'),
+    url('../../assets/fonts/Rubik/Rubik-Medium.woff2') format('woff2'),
+    url('../../assets/fonts/Rubik/Rubik-Medium.ttf') format('ttf');
+  font-weight: 500;
+}

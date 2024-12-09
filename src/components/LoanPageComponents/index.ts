@@ -1,0 +1,1 @@
+export {default as AdvantagesCreditCard}  from "./AdvantagesСreditСard/AdvantagesСreditСard";

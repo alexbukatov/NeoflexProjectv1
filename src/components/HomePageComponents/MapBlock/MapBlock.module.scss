@@ -1,0 +1,31 @@
+@import '/src/scss/variables/variables';
+@import '/src/scss/variables/font-size';
+@import '/src/scss/mixins/mixin';
+@import '/src/scss/mixins/media';
+
+.map {
+  @include flexbox(column, center, center, null);
+  text-align: center;
+  margin-top: 5.8rem;
+  color: $black;
+  @include tablet {
+    margin-top: 4rem;
+  }
+
+  &__text {
+    margin-top: 3.5rem;
+    font-size: $font-size-m;
+    font-weight: 500;
+    @include tablet {
+      margin-top: 2.5rem;
+    }
+  }
+  &__image {
+    margin-top: 5.5rem;
+    max-width: 100%;
+    object-fit: cover;
+    @include tablet {
+      margin-top: 2.5rem;
+    }
+  }
+}

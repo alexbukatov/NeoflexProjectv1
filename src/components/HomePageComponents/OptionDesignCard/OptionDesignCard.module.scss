@@ -1,0 +1,47 @@
+@import '/src/scss/mixins/media';
+@import '/src/scss/variables/variables';
+@import '/src/scss/mixins/mixin';
+@import '/src/scss/variables/font-size';
+
+.option {
+  @include flexbox(row, space-between, stretch, 15rem);
+  margin-top: 13rem;
+  @media (max-width: 1200px) {
+    gap: 4rem;
+  }
+  @include tablet {
+    gap: 2.5rem;
+    @include flexbox(column, center, center, null);
+    margin-top: 5rem;
+  }
+
+  &__block {
+    color: $black;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    text-align: left;
+    @media (max-width: 1040px) {
+      font-size: calc($font-size-xl - 1rem);
+    }
+    @include tablet {
+      font-size: $font-size-l;
+      max-width: 52rem;
+      @include flexbox(column, flex-start, stretch, null);
+    }
+    @include bigMobile {
+      font-size: calc($font-size-l - 0.5rem);
+    }
+  }
+  &__blockHeader {
+    padding-bottom: 3rem;
+    @include tablet {
+      padding-bottom: 2.5rem;
+    }
+  }
+  &__image {
+    @include grid(repeat(2, 1fr) / repeat(2, 1fr), 1.6rem);
+    @include bigMobile {
+      @include grid(repeat(4, 1fr) / 1fr, 1.6rem);
+    }
+  }
+}

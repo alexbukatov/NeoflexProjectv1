@@ -1,0 +1,74 @@
+@import '/src/scss/mixins/media';
+@import '/src/scss/variables/variables';
+@import '/src/scss/variables/font-size';
+@import '/src/scss/mixins/mixin';
+
+.menuBurger {
+  @include tablet {
+    display: block;
+  }
+
+  &__toogle {
+    display: none;
+
+    &:checked + .menuBurger__btn img {
+      transform: rotate(90deg);
+    }
+
+    &:checked ~ .menuBurger__items {
+      visibility: visible;
+      left: 0;
+    }
+  }
+
+  &__btn {
+    display: none;
+    img {
+      transition: $transition-duration;
+    }
+
+    @include tablet {
+      display: block;
+    }
+  }
+
+  &__items {
+    display: flex;
+    gap: 5rem;
+    @include tablet {
+      flex-direction: column;
+      position: fixed;
+      visibility: hidden;
+      top: 0;
+      left: -100%;
+      width: 28rem;
+      height: 100%;
+      padding: 10rem 0;
+      text-align: center;
+      background-color: $gray;
+      box-shadow: 1px 0 6px rgba($color: $black, $alpha: 0.8);
+      transition: left $transition-duration, visibility $transition-duration;
+    }
+
+    // Для разных размеров экрана меняем ширину меню
+    @include bigMobile {
+      width: 20rem;
+    }
+
+    @include mobile {
+      width: 14rem;
+    }
+  }
+
+  &__item {
+    a {
+      color: $black;
+      transition: $transition-duration;
+      @include tablet {
+        padding: 1.5rem 0;
+        color: $white;
+        font-size: calc($font-size-m + 0.4rem);
+      }
+    }
+  }
+}
