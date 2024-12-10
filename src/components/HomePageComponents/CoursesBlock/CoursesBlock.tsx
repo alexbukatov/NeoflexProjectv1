@@ -7,7 +7,7 @@ import axios from 'axios';
 type TcurrencyItem = {
   base_code: string;
   conversion_rate: number | 'N/A';
-  time_next_update_utc?: string;
+  time_last_update_utc?: string;
 };
 
 const CURRENCY_CODES: string[] = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'TRY'];
@@ -16,32 +16,31 @@ const API_KEY = '4a034b01ebc5dd2148ffd148';
 
 const CoursesBlock = () => {
   const [currencyItems, setCurrencyItems] = useState<TcurrencyItem[]>([]);
+  const fetchCurrency = async () => {
+    try {
+      const requests = CURRENCY_CODES.map((code) =>
+        axios.get(`https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${code}/${TARGET_CODE}`),
+      );
+      const responses = await Promise.all(requests);
+
+      // Извлекаем данные
+      const currenciesData: TcurrencyItem[] = responses.map((response) => response.data);
+      setCurrencyItems(currenciesData);
+    } catch (error) {
+      console.error('Error fetching currency data:', error);
+
+      // Создаём массив заглушек
+      const fallbackData: TcurrencyItem[] = CURRENCY_CODES.map((code) => ({
+        base_code: code,
+        conversion_rate: 'N/A',
+      }));
+      setCurrencyItems(fallbackData);
+    }
+  };
+
   useEffect(() => {
-    const fetchCurrency = async () => {
-      try {
-        const requests = CURRENCY_CODES.map((code) =>
-          axios.get(`https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${code}/${TARGET_CODE}`),
-        );
-        const responses = await Promise.all(requests);
-
-        // Извлекаем данные
-        const currenciesData: TcurrencyItem[] = responses.map((response) => response.data);
-        setCurrencyItems(currenciesData);
-      } catch (error) {
-        console.error('Error fetching currency data:', error);
-
-        // Создаём массив заглушек
-        const fallbackData: TcurrencyItem[] = CURRENCY_CODES.map((code) => ({
-          base_code: code,
-          conversion_rate: 'N/A',
-        }));
-        setCurrencyItems(fallbackData);
-      }
-    };
-
     fetchCurrency(); // Первый вызов
     const intervalId = setInterval(fetchCurrency, 15 * 60 * 1000); // Обновление каждые 15 минут
-
     return () => clearInterval(intervalId); // Очистка интервала при размонтировании
   }, []);
 
@@ -49,7 +48,7 @@ const CoursesBlock = () => {
     <section className={styles.currency}>
       <h3>Exchange rate in internet bank</h3>
       <p className={styles.currency__update}>
-        {currencyItems[0]?.time_next_update_utc ?? 'No update information available'}
+        {currencyItems[0]?.time_last_update_utc ?? 'No update information available'}
       </p>
       <div className={styles.currency__rate}>
         <p className={styles.currency__rateHeader}>Currency</p>
@@ -69,11 +68,11 @@ const CoursesBlock = () => {
           <img src={currencySvg} alt="Currency illustration" aria-label="Currency illustration" />
         </div>
       </div>
-
       <Link
         tabIndex={8}
-        to="/https://bankiros.ru/currency/cbrf"
-        className={styles.currency__rateLink}>
+        to="https://www.banki.ru/products/currency/cb/"
+        className={styles.currency__rateLink}
+        target="_blank">
         All courses
       </Link>
     </section>

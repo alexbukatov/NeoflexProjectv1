@@ -19,7 +19,7 @@ const CarouselNews: React.FC<TcarouselNewsProps> = ({ urlToImage, title, descrip
   const isRemovedUrl = (url: string) => !url || url === 'https://removed.com';
 
   return (
-    <Link to={isRemovedUrl(url) ? '#' : url}>
+    <Link to={isRemovedUrl(url) ? '#' : url} target="_blank">
       <li key={url} className={styles.carousel__item}>
         <figure className={styles.carousel__item__wrapper}>
           <img

@@ -2,7 +2,17 @@ import menuSvg from 'assets/svg/menu-burger.svg';
 import styles from './NavHeader.module.scss';
 import { Link } from 'react-router-dom';
 
-export const NAV_ITEMS: string[] = ['Credit card', 'Product', 'Account', 'Resources'];
+type TnavItems = {
+  name: string;
+  route: string;
+};
+
+const NAV_ITEMS: TnavItems[] = [
+  { name: 'Credit card', route: '/loan' },
+  { name: 'Product', route: '#' },
+  { name: 'Account', route: '#' },
+  { name: 'Resources', route: '#' },
+];
 
 const NavHeader = () => {
   return (
@@ -15,17 +25,14 @@ const NavHeader = () => {
         <img className={styles.menuBurger__image} src={menuSvg} alt="Menu button" />
       </label>
       <ul className={styles.menuBurger__items}>
-        {NAV_ITEMS.map((item, index: number) => (
-          <li key={item} className={styles.menuBurger__item}>
-            {item === 'Credit card' ? (
-              <Link to="/loan" aria-label={`Navigate to ${item}`} tabIndex={2 + index}>
-                {item}
-              </Link>
-            ) : (
-              <Link to="/" aria-label={`Navigate to ${item}`} tabIndex={2 + index}>
-                {item}
-              </Link>
-            )}
+        {NAV_ITEMS.map((objItem, index: number) => (
+          <li key={objItem.name} className={styles.menuBurger__item}>
+            <Link
+              to={objItem.route}
+              aria-label={`Navigate to ${objItem.name}`}
+              tabIndex={2 + index}>
+              {objItem.name}
+            </Link>
           </li>
         ))}
       </ul>
