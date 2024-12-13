@@ -20,14 +20,20 @@
     margin-top: 5rem;
     width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    @media (max-width: 700px) {
+    @include flexbox(row, flex-start, center, none);
+    @media (max-width: 1350px) {
+      max-width: 900px;
+    }
+    @media (max-width: 849px) {
+      max-width: 460px;
+    }
+    @include mobile {
       max-width: 320px;
     }
   }
 
   &__items {
+    padding: 3px;
     @include flexbox(row, flex-start, stretch, 8rem);
     transition: $transition-duration;
     @include tablet {
@@ -41,20 +47,12 @@
   &__controls {
     margin: 4.8rem 0 0 auto;
     @include flexbox(row, flex-start, center, 2rem);
-    @include tablet {
+    @media (max-width: 1350px) {
       margin: 3rem 0 0 0;
+      justify-content: center;
     }
-  }
-  &__button {
-    border-radius: 50%;
-    &:disabled {
-      border: 1px solid rgb(0, 60, 255);
-      background: $white; // Белый фон для кнопки
-      cursor: not-allowed;
+    button {
+      border-radius: 50%;
     }
-  }
-
-  &__svgDisabled {
-    filter: brightness(0); // Чёрная SVG
   }
 }

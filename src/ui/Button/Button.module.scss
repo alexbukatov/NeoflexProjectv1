@@ -1,0 +1,31 @@
+@import '/src/scss/variables/variables';
+@import '/src/scss/variables/font-size';
+@import '/src/scss/mixins/mixin';
+@import '/src/scss/mixins/media';
+.button {
+  color: $white;
+  background: $blue;
+  padding: 1.6rem;
+  font-size: $font-size-m;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 16px;
+  transition: $transition-duration;
+  cursor: pointer;
+  &:hover {
+    background-color: $light-blue;
+    color: $white;
+  }
+  &:focus {
+    background-color: $light-blue;
+    color: $white;
+  }
+  &:disabled {
+    border: 1px solid rgb(0, 60, 255);
+    background: $white;
+    cursor: not-allowed;
+  }
+  &__svgDisabled {
+    filter: brightness(0); // Чёрная SVG
+  }
+}

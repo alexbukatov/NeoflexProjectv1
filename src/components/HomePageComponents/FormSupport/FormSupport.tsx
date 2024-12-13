@@ -1,8 +1,16 @@
 import subscribeSvg from 'assets/svg/subscribeSvg.svg';
 import envelopeSvg from 'assets/svg/envelope.svg';
 import styles from './FormSupport.module.scss';
+import Input from 'ui/Input/Input';
+import Button from 'ui/Button/Button';
+import { useCallback } from 'react';
 
 const FormSupport = () => {
+  //функция заглушка для Button UI
+  const handleSubmit = useCallback(() => {
+    console.log('Form submitted');
+  }, []);
+
   return (
     <section className={styles.newsForm}>
       <div className={styles.newsForm__items}>
@@ -10,30 +18,30 @@ const FormSupport = () => {
           <p className={styles.newsForm__text}>Support</p>
           <h3 className={styles.newsForm__header}>
             <span>Subscribe Newsletter & get</span>
-            <br />
-            Bank News
+            <p>Bank News</p>
           </h3>
         </div>
         <form className={styles.newsForm__form} action="#" method="POST">
           <label className={styles.newsForm__formWrapper} htmlFor="email">
             <img src={envelopeSvg} alt="Envelope icon" aria-label="Envelope icon" />
-            <input
-              className={styles.newsForm__formInput}
-              type="text"
+            <Input
               id="email"
+              type="email"
               placeholder="Your email"
-              aria-label="Enter your email to subscribe"
+              ariaLabel="Enter your email to subscribe"
               required
               tabIndex={9}
+              className={styles.newsForm__formInput} // кастомный класс для стилизации
             />
-            <button
-              className={styles.newsForm__formButton}
+            <Button
+              onClick={handleSubmit}
               type="submit"
-              aria-label="Subscribe to Newsletter"
+              icon={subscribeSvg}
+              alt="Subscribe icon"
+              className={styles.newsForm__formButton} // кастомный класс для стилизации
               tabIndex={10}>
-              <img src={subscribeSvg} alt="Subscribe icon" aria-label="Subscribe icon" />
               Subscribe
-            </button>
+            </Button>
           </label>
         </form>
       </div>

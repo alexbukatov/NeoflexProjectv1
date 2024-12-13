@@ -1,0 +1,12 @@
+@import '/src/scss/variables/variables';
+@import '/src/scss/variables/font-size';
+.link {
+  cursor: pointer;
+  transition: $transition-duration;
+  &:hover {
+    color: $orange;
+  }
+  &:focus {
+    color: $orange;
+  }
+}

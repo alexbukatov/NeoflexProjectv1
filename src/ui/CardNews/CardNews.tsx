@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CarouselNews.module.scss';
+import styles from './CardNews.module.scss';
 import plugSvg from 'assets/svg/plugDefaultSvg.svg';
 import { Link } from 'react-router-dom';
 
@@ -19,19 +19,15 @@ const CarouselNews: React.FC<TcarouselNewsProps> = ({ urlToImage, title, descrip
   const isRemovedUrl = (url: string) => !url || url === 'https://removed.com';
 
   return (
-    <Link to={isRemovedUrl(url) ? '#' : url} target="_blank">
-      <li key={url} className={styles.carousel__item}>
-        <figure className={styles.carousel__item__wrapper}>
-          <img
-            className={styles.carousel__item__image}
-            src={urlToImage || plugSvg}
-            alt="image-news"
-          />
-          <figcaption className={styles.carousel__item__text}>
-            <h5 className={styles.carousel__item__textTitle}>
+    <Link to={isRemovedUrl(url) ? '#' : url} target="_blank" className={styles.card}>
+      <li key={url} className={styles.card__item}>
+        <figure className={styles.cardl__item__wrapper}>
+          <img className={styles.card__item__image} src={urlToImage || plugSvg} alt="image-news" />
+          <figcaption className={styles.card__item__text}>
+            <h5 className={styles.card__item__textTitle}>
               {isRemovedText(title) ? plugText : title}
             </h5>
-            <p className={styles.carousel__item__textDesc}>
+            <p className={styles.card__item__textDesc}>
               {isRemovedText(description) ? plugText : description}
             </p>
           </figcaption>

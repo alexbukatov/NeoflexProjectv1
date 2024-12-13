@@ -1,13 +1,7 @@
 import imageAdvantages from 'assets/homeImage/Advantages.png';
 import checkMark from 'assets/svg/check.svg';
 import styles from './AdvantagesBlock.module.scss';
-
-const ADVANTAGES_ITEMS: string[] = [
-  'Powerful online protection',
-  'Cashback without borders',
-  'Personal design',
-  'Work anywhere in the world',
-];
+import { ADVANTAGES_ITEMS } from './AdvantagesBlock.constant';
 
 const AdvantagesBlock = () => {
   return (

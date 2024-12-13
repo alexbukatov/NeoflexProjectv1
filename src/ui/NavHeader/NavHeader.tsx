@@ -1,13 +1,13 @@
 import menuSvg from 'assets/svg/menu-burger.svg';
 import styles from './NavHeader.module.scss';
-import { Link } from 'react-router-dom';
+import BaseLink from '../BaseLink/BaseLink';
 
-type TnavItems = {
+type TNavItems = {
   name: string;
   route: string;
 };
 
-const NAV_ITEMS: TnavItems[] = [
+const NAV_ITEMS: TNavItems[] = [
   { name: 'Credit card', route: '/loan' },
   { name: 'Product', route: '#' },
   { name: 'Account', route: '#' },
@@ -27,12 +27,11 @@ const NavHeader = () => {
       <ul className={styles.menuBurger__items}>
         {NAV_ITEMS.map((objItem, index: number) => (
           <li key={objItem.name} className={styles.menuBurger__item}>
-            <Link
+            <BaseLink
               to={objItem.route}
-              aria-label={`Navigate to ${objItem.name}`}
-              tabIndex={2 + index}>
-              {objItem.name}
-            </Link>
+              ariaLabel={`Navigate to ${objItem.name}`}
+              tabIndex={2 + index}
+              children={objItem.name}></BaseLink>
           </li>
         ))}
       </ul>

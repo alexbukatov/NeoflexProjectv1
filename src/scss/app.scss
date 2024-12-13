@@ -39,34 +39,3 @@ a {
     color: $orange;
   }
 }
-
-button {
-  cursor: pointer;
-  transition: $transition-duration;
-  &:hover {
-    background: $light-blue;
-  }
-  &:focus {
-    background: $light-blue;
-  }
-}
-
-.link-blue,
-button {
-  color: $white;
-  border-radius: 1.6rem;
-  background: $blue;
-  padding: 1.6rem;
-  font-size: $font-size-m;
-  font-weight: 700;
-  text-align: center;
-  transition: $transition-duration;
-  &:hover {
-    background-color: $light-blue;
-    color: $white;
-  }
-  &:focus {
-    background-color: $light-blue;
-    color: $white;
-  }
-}

@@ -1,19 +1,17 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logoNeoflex from '../../assets/svg/logoNeoflex.svg';
 import styles from './Footer.module.scss';
+import { LINKS_FOOTER, CONTACT_ITEMS } from './Footer.constant';
+import BaseLink from 'ui/BaseLink/BaseLink';
 
-const LINKS_FOOTER: string[] = [
-  'About bank',
-  'Ask a Question',
-  'Quality of service',
-  'Requisites',
-  'Press center',
-  'Bank career',
-  'Investors',
-  'Analytics',
-  'Business and processes',
-  'Compliance and business ethics',
-];
+export type TLinksFooter = {
+  name: string;
+  route: string;
+};
+export type TContactsFooter = {
+  content: string;
+  className: string;
+};
 
 const Footer = () => {
   const location = useLocation();
@@ -30,43 +28,48 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__content}>
-        <div className={styles.footer__head}>
-          <div className={styles.footer__link} onClick={handleLogoClick} role="button">
-            <img src={logoNeoflex} alt="Neoflex logo" aria-label="Neoflex logo" />
-          </div>
-          <address>
-            <ul className={styles.footer__headContactsItems}>
-              <li className={styles.footer__headContactsItem}>
-                <a
-                  className={styles.footer__headContactsItem__tel}
-                  href="tel: +7 (495) 984 25 13"
-                  aria-label="Call +7 (495) 984 25 13"
-                  tabIndex={11}>
-                  +7 (495) 984 25 13
-                </a>
-              </li>
-              <li className={styles.footer__headContactsItem}>
-                <a
-                  className={styles.footer__headContactsItem__malito}
-                  href="mailto:info@neoflex.ru"
-                  aria-label="Email info@neoflex.ru"
-                  tabIndex={12}>
-                  info@neoflex.ru
-                </a>
-              </li>
-            </ul>
-          </address>
-        </div>
+        <figure className={styles.footer__head}>
+          <img
+            src={logoNeoflex}
+            onClick={handleLogoClick}
+            alt="Neoflex logo"
+            aria-label="Neoflex logo"
+          />
+          <figcaption>
+            <address>
+              <ul className={styles.footer__headContactsItems}>
+                {CONTACT_ITEMS.map((contact, index) => (
+                  <li key={contact.content} className={styles.footer__headContactsItem}>
+                    <a
+                      className={contact.className}
+                      href={
+                        contact.content.includes('@')
+                          ? `mailto:${contact.content}`
+                          : `tel:${contact.content}`
+                      }
+                      aria-label={
+                        contact.content.includes('@')
+                          ? `Email ${contact.content}`
+                          : `Call ${contact.content}`
+                      }
+                      tabIndex={11 + index}>
+                      {contact.content}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </address>
+          </figcaption>
+        </figure>
         <div className={styles.footer__links}>
-          {LINKS_FOOTER.map((string: string, index: number) => (
-            <Link
-              to="/"
-              key={string}
-              className={styles.footer__link}
-              aria-label={`Navigate to ${string}`}
-              tabIndex={13 + index}>
-              {string}
-            </Link>
+          {LINKS_FOOTER.map((link, index) => (
+            <BaseLink
+              key={link.name}
+              to={link.route}
+              ariaLabel={`Navigate to ${link.name}`}
+              tabIndex={13 + index}
+              children={link.name}
+              fontWeight="500"></BaseLink>
           ))}
         </div>
         <span className={styles.footer__separator}></span>
